@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float maxHealth = 100f;
+    public float health;
+
+
+    void Awake()
     {
-        
+        health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Damage(float amount, string type)
     {
         
     }
