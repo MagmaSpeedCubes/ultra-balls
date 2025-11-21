@@ -22,7 +22,7 @@ deals a random amount of damage each hit
 
 
 Mace
-deals more damage when falling from higher
+deals more damage depending on how long it was airborne(squared)
 
 Grower
 increases in size on each bounce

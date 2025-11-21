@@ -47,7 +47,7 @@ public class ReflectionCaller : MonoBehaviour
 
         // If you have overloads, you should resolve by parameter types:
         var paramTypes = args?.Select(a => a?.GetType() ?? typeof(object)).ToArray() ?? Type.EmptyTypes;
-        Debug.Log("Looking for method: " + functionName + " with parameters: " + string.Join(", ", paramTypes.Select(t => t.Name)));
+        // Debug.Log("Looking for method: " + functionName + " with parameters: " + string.Join(", ", paramTypes.Select(t => t.Name)));
         MethodInfo method = type.GetMethod(functionName, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance, null, paramTypes, null);
         if (method == null)
         {

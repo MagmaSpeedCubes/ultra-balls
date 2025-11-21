@@ -10,13 +10,29 @@ public class BallManager : MonoBehaviour
     [HideInInspector]public int numBounces = 0;
     void Awake()
     {
+        Initialize();
+
+    }
+
+    protected void Initialize()
+    {
+        numBounces = 0;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = ballData.gravityScale;
         transform.localScale = Vector3.one * ballData.sizeMultiplier;
         spr = GetComponent<SpriteRenderer>();
         spr.sprite = ballData.sprite;
         spr.color = ballData.defaultColor;
+        ApplyRandomForce();
 
+
+    }
+
+    protected void ApplyRandomForce()
+    {
+        float angle = UnityEngine.Random.Range(0f, ballData.powerMultiplier * Mathf.PI);
+        Vector2 force = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * UnityEngine.Random.Range(5f, 10f);
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
 
 
@@ -25,21 +41,18 @@ public class BallManager : MonoBehaviour
         Damageable damageable = collision.gameObject.GetComponent<Damageable>();
         if (damageable != null)
         {
-
-            object damageAmount = ReflectionCaller.CallReturnableFunction<float>("DamageFormulas", ballData.name, this);
-            try
-            {
-                float damage = Convert.ToSingle(damageAmount);
-                Damage(damage, damageable);
-                
-                numBounces++;
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Error converting damage amount: " + e.Message);
-            }
-            
+            HandleCollisions(damageable);
         }
+    }
+
+    virtual public void HandleCollisions(Damageable damageable)
+    {
+        object damageAmount = ReflectionCaller.CallReturnableFunction<float>("DamageFormulas", ballData.name, this);
+        float damage = Convert.ToSingle(damageAmount);
+
+        Damage(damage, damageable);
+        
+        numBounces++;
     }
 
 
