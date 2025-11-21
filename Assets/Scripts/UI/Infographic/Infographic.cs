@@ -8,8 +8,9 @@ using System;
 public class Infographic : MonoBehaviour
 {
 
-    public string type;
+    [HideInInspector]public string type;
     protected float value;
+    [SerializeField] protected float roundingPrecision = 1.0f;
     public void setValue(float newValue)
     {
         float oldValue = value;
