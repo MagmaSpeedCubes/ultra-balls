@@ -3,17 +3,21 @@ using UnityEngine.UI;
 using TMPro;
 public class CardManager : MonoBehaviour
 {
-    [SerializeField] protected Ball subject;
+    public Ball subject;
     [SerializeField] protected Image cardImage;
     [SerializeField] protected TextMeshProUGUI cardTitle;
     [SerializeField] protected TextMeshProUGUI cardCost;
 
-
-    void Start()
+    void LateUpdate()
     {
         cardImage.sprite = subject.sprite;
         cardTitle.text = subject.name;
         cardCost.text = ""+subject.price;
+    }
+
+    void Start()
+    {
+
     }
 
     public void OnClick()

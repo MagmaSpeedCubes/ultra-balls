@@ -44,14 +44,27 @@ public class ClickManager : MonoBehaviour
     {
         if(LevelStats.selectedBall != null)
         {
-            if(LevelStats.selectedBall.price <= LevelStats.energy)
+            Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
+
+            foreach (Collider2D hit in hits)
             {
-                LevelStats.energy -= LevelStats.selectedBall.price;
-                GameObject newBall = Instantiate(LevelStats.selectedBall.ballPrefabObject, worldPos, Quaternion.identity);
-                newBall.name = LevelStats.selectedBall.ballPrefabObject.name;
-                newBall.transform.parent = ballParent.transform;
                 
+                if(hit.name == "SpawnZone")
+                {
+                    //continue spawning process if and only if clicked in spawn zone
+                    if(LevelStats.selectedBall.price <= LevelStats.energy)
+                    {
+                        LevelStats.energy -= LevelStats.selectedBall.price;
+                        GameObject newBall = Instantiate(LevelStats.selectedBall.ballPrefabObject, worldPos, Quaternion.identity);
+                        newBall.name = LevelStats.selectedBall.ballPrefabObject.name;
+                        newBall.transform.parent = ballParent.transform;
+                        
+                    }
+                    
+                }
             }
+
+
         }
     }
 }

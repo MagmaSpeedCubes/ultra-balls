@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaee11cab9a644305a484e1601853e0d, type: 3}
-  m_Name: Basic
+  m_Name: Derivative
   m_EditorClassIdentifier: Assembly-CSharp::Ball
-  defaultColor: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
+  defaultColor: {r: 0, g: 0.7490196, b: 1, a: 1}
   bounceSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
   specialSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
-  gravity: 1
+  gravity: 0.12
   power: 1
   size: 1
-  movementSpeed: 1
-  price: 5
+  movementSpeed: 0.12
+  price: 50

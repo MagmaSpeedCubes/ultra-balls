@@ -62,6 +62,12 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for(int i=activeBalls.Count-1; i>=LevelStats.MAX_BALL_COUNT; i--)
+        {
+            BallManager ball = activeBalls[i];
+            Debug.Log("Balls capped at " + LevelStats.MAX_BALL_COUNT + ". Destroying ball " + i);
+            Destroy(ball.gameObject);
+            activeBalls.Remove(ball);
+        }
     }
 }
