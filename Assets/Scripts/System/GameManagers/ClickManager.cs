@@ -57,6 +57,7 @@ public class ClickManager : MonoBehaviour
                         LevelStats.energy -= LevelStats.selectedBall.price;
                         GameObject newBall = Instantiate(LevelStats.selectedBall.ballPrefabObject, worldPos, Quaternion.identity);
                         newBall.name = LevelStats.selectedBall.ballPrefabObject.name;
+                        newBall.GetComponent<SpriteRenderer>().color = LevelStats.selectedBall.prefab.defaultColor;
                         newBall.transform.parent = ballParent.transform;
                         
                     }

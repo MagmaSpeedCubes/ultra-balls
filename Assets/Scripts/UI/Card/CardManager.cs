@@ -11,6 +11,7 @@ public class CardManager : MonoBehaviour
     void Update()
     {
         cardImage.sprite = subject.sprite;
+        cardImage.color = subject.spriteColor;
         cardTitle.text = subject.name;
         cardCost.text = ""+subject.price;
     }

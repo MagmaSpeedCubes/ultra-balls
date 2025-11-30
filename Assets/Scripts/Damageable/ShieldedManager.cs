@@ -33,7 +33,7 @@ public class ShieldedManager : DamageManager
     {
         if (shieldHealth > 0)
         {
-            shieldHealth -= amount * (1 - damageableData.armor);
+            shieldHealth -= amount * (1 - armor);
 
             if (shieldHealth < 0)
             {

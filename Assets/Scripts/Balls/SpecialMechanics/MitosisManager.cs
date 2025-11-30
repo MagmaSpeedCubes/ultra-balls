@@ -42,8 +42,9 @@ public class MitosisManager : BallManager
             {
                 Debug.Log("Split #" + i);
                 GameObject newBall = Instantiate(this.gameObject, transform.position, Quaternion.identity);
+                newBall.name = this.name;
                 MitosisManager newBallManager = newBall.GetComponent<MitosisManager>();
-                newBallManager.ballData = this.ballData;
+                newBallManager.ballData = newBall.GetComponent<Ball>();
                 newBallManager.localSizeMultiplier = this.localSizeMultiplier / copies;
                 newBallManager.numBounces = 0;
 

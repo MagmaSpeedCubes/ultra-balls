@@ -20,13 +20,18 @@ public class IntegralBallManager : BallManager
     }
     void Start()
     {
+        Initialize();
+    }
+
+    override protected void Initialize()
+    {
+        base.Initialize();
         damage = 0f;
         List<BallManager> activeBalls = LevelManager.instance.activeBalls;
         foreach(BallManager ball in activeBalls)
         {
             damage += Utility.CallReturnableFunction<float>("DamageFormulas", ball.ballData.name, ball);
         }
-
     }
 
     override public void HandleCollisions(DamageManager damageable)

@@ -267,16 +267,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81016a7898e948f7bb3d9c4149031f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
-  sprite: {fileID: 0}
-  prefab: {fileID: 11400000, guid: a4daa2f01cd3241b899d2b833b6f3267, type: 2}
-  ownable: {fileID: 11400000, guid: d71ebf12e57804e1b9e0a643b36d9835, type: 2}
-  gravity: 0
-  power: 0
-  size: 0
-  movementSpeed: 0
-  price: 0
-  bounceSound: {fileID: 0}
-  specialSound: {fileID: 0}
+  sprite: {fileID: 432040059503290001, guid: c4541d88662b245e0a72baa59dd702c4, type: 3}
+  spriteColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  prefab: {fileID: 11400000, guid: adcb1bece26294c8daf521a6aceacae8, type: 2}
+  ownable: {fileID: 11400000, guid: 21e73bbbb39cb46eb8c455703e2b69e1, type: 2}
+  gravity: 1.5
+  power: 1
+  size: 1.2
+  movementSpeed: 1.5
+  price: 15
+  bounceSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
+  specialSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
   ballPrefabObject: {fileID: 1710306062775380526}
 --- !u!114 &8650342721036632734
 MonoBehaviour:

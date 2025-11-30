@@ -18,7 +18,7 @@ public class InfoLevelRestrictor : MonoBehaviour
 
     void Update()
     {
-        string infoLevel = ProfileCustomization.infoLevel;
+        string infoLevel = ProfileCustomization.infoLevel.ToString();
 
         if (showValues.IndexOf(infoLevel)==-1)
         {

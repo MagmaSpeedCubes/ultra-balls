@@ -5,6 +5,7 @@ public class Ball : MonoBehaviour
 {
 
     [HideInInspector] public Sprite sprite;
+    [HideInInspector] public Color spriteColor;
     public BallPrefab prefab;
     public Ownable ownable;
 
@@ -63,6 +64,7 @@ public class Ball : MonoBehaviour
         price = Mathf.Max(0, (int)(prefab.price * priceMultiplier));
 
         sprite = ownable != null ? ownable.sprite : null;
+        spriteColor = prefab.defaultColor;
 
         bounceSound = prefab.bounceSound;
         specialSound = prefab.specialSound;

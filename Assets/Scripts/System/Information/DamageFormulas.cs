@@ -46,11 +46,6 @@ public class DamageFormulas : MonoBehaviour
         return ball.ballData.power * 2f;
     }
 
-    public float Sticky(BallManager ball)
-    {
-        return ball.ballData.power;
-    }
-
     public float Speedy(BallManager ball)
     {
         return ball.ballData.power;
@@ -62,16 +57,7 @@ public class DamageFormulas : MonoBehaviour
         return (float) rng.NextDouble() * 2 * ball.ballData.power;
     }
 
-    public float Mace(BallManager ball)
-    {
-        return 0;
-        //mace needs its own dedicated controller tracking height movement
-    }
 
-    public float Grower(BallManager ball)
-    {
-        return ball.ballData.power;
-    }
 
     public float Coin(BallManager ball)
     {
@@ -136,6 +122,7 @@ public class DamageFormulas : MonoBehaviour
         Debug.Log("Weakest damage: " + minDamage + ", Strongest damage: " + maxDamage + ", Difference: " + damageDifference + ", Derivative damage (after multiplier): " + derivativeDamage);
         return (derivativeDamage > 0) ? derivativeDamage : 0f;
     }
+
 
 
 

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5092777323750655291}
   - component: {fileID: 3394796163755633455}
   - component: {fileID: 5687597988944758663}
-  - component: {fileID: 6231263715570296486}
   - component: {fileID: 1282141167203779160}
+  - component: {fileID: 7611698828378535851}
   m_Layer: 7
   m_Name: Integral
   m_TagString: Untagged
@@ -255,20 +255,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6231263715570296486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7928876147619916337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58a9ca74352043ab9facff26f4deebc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BallManager
-  ballData: {fileID: 1282141167203779160}
-  numBounces: 0
 --- !u!114 &1282141167203779160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,14 +267,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81016a7898e948f7bb3d9c4149031f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
-  sprite: {fileID: 0}
+  sprite: {fileID: -7896866065208103479, guid: 661e1d753c06c481ab6ac5a7926865c3, type: 3}
+  spriteColor: {r: 0, g: 0.7490196, b: 1, a: 1}
   prefab: {fileID: 11400000, guid: cb597151877c447798a297b5d5d3571c, type: 2}
   ownable: {fileID: 11400000, guid: e3e482b0006f643069714ce5335aeb93, type: 2}
-  gravity: 0
-  power: 0
-  size: 0
-  movementSpeed: 0
-  price: 0
-  bounceSound: {fileID: 0}
-  specialSound: {fileID: 0}
+  gravity: 0.12
+  power: 1
+  size: 1
+  movementSpeed: 0.12
+  price: 200
+  bounceSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
+  specialSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
   ballPrefabObject: {fileID: 7928876147619916337}
+--- !u!114 &7611698828378535851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928876147619916337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a5c174580b84432bec002c1a77236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntegralBallManager
+  ballData: {fileID: 1282141167203779160}
+  numBounces: 0
+  damage: 0

@@ -2,18 +2,38 @@ using UnityEngine;
 
 public class DamageManager : MonoBehaviour
 {
+    public DamageablePrefab prefab;
 
-    public Damageable damageableData;
+    protected float armor;
+    protected float maxHealth;
+    protected float regenRate;
+
+    protected AudioClip damageSound, deathSound;
+    [Tooltip("Sprites in order of damaged first one is full health and slowly get more damaged")]
+    protected Sprite[] sprites;
 
     public Infographic[] healthBars;
-    [SerializeField] protected float maxHealth;
-    [SerializeField] protected float regenRate = 0f;
     protected float health;
     
 
 
     void Awake()
     {
+        Instantiate();
+
+    }
+
+    void Instantiate()
+    {
+        armor = prefab.armor;
+        maxHealth = prefab.maxHealth;
+        regenRate = prefab.regenRate;
+
+        damageSound = prefab.damageSound;
+        deathSound = prefab.deathSound;
+
+        sprites = prefab.sprites;
+
         health = maxHealth;
         UpdateInfographics();
 
@@ -28,13 +48,17 @@ public class DamageManager : MonoBehaviour
             {
                 health = maxHealth;
             }
-            UpdateInfographics();
+            
         }
+        //regenerate
+        int spriteIndex = (health==maxHealth) ? sprites.Length - 1 :(int) (sprites.Length * (health / maxHealth-0.01));
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[spriteIndex];
+        UpdateInfographics();
     }
 
     virtual public void Damage(float amount, string type, BallManager source = null)
     {
-        health -= amount * (1-damageableData.armor);
+        health -= amount * (1-armor);
 
         if (health <= 0)
         {
@@ -42,7 +66,7 @@ public class DamageManager : MonoBehaviour
         }
         else
         {
-            AudioManager.instance.PlaySound(damageableData.damageSound, ProfileCustomization.worldVolume * ProfileCustomization.masterVolume);
+            AudioManager.instance.PlaySound(damageSound, ProfileCustomization.worldVolume * ProfileCustomization.masterVolume);
             UpdateInfographics();
         }
     }
@@ -59,7 +83,7 @@ public class DamageManager : MonoBehaviour
 
     virtual protected void Die()
     {
-        AudioManager.instance.PlaySound(damageableData.deathSound, ProfileCustomization.worldVolume * ProfileCustomization.masterVolume);
+        AudioManager.instance.PlaySound(deathSound, ProfileCustomization.worldVolume * ProfileCustomization.masterVolume);
         Destroy(gameObject);
     }
 }

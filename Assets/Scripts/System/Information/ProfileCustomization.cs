@@ -1,10 +1,20 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class ProfileCustomization : MonoBehaviour
 {
 
-    public static string infoLevel = "technical";
+    public enum InfoLevel
+    {
+        aesthetic = -1,
+        balanced = 0,
+        technical = 1,
+        debug = 2
+    }
+
+
+    public static InfoLevel infoLevel = InfoLevel.balanced;
     //-1 = aesthetic
     // 0 = balanced
     // 1 = technical
@@ -18,6 +28,7 @@ public class ProfileCustomization : MonoBehaviour
     public static float playerVolume = 1f;
     public static float enemyVolume = 1f;
     public static float worldVolume = 1f;
+
 
     public static LinkedList<Color> rarityColors;
     public List<Color> assignRarityColors;
@@ -38,16 +49,31 @@ public class ProfileCustomization : MonoBehaviour
 
     public static void LoadPrefs()
     {
-        infoLevel = PlayerPrefs.GetString("infoLevel");
+        infoLevel = GetInfoLevel();
         masterVolume = PlayerPrefs.GetFloat("masterVolume", 1f);
     }
 
     public static void SavePrefs()
     {
-        PlayerPrefs.SetString("infoLevel", infoLevel);
+        PlayerPrefs.SetString("infoLevel", infoLevel.ToString());
         Debug.Log("Saved infoLevel as " + infoLevel);
         PlayerPrefs.SetFloat("masterVolume", masterVolume);
         // Debug.Log("Saved masterVolume as " + masterVolume);
         // Debug.Log("ProfileStats saved");
+    }
+
+    private static InfoLevel GetInfoLevel()
+    {
+
+        string raw = PlayerPrefs.GetString("infoLevel");
+
+        if (int.TryParse(raw, out int intVal))
+        {
+            if (Enum.IsDefined(typeof(InfoLevel), intVal))
+                return (InfoLevel)intVal;
+        }
+        return InfoLevel.balanced;
+
+
     }
 }
