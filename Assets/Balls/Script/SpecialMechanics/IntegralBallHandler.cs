@@ -1,9 +1,9 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-public class IntegralBallManager : BallManager
+public class IntegralBallHandler : BallHandler
 {
-    public static IntegralBallManager instance;
+    public static IntegralBallHandler instance;
     public float damage;
 
     void Awake()
@@ -27,14 +27,14 @@ public class IntegralBallManager : BallManager
     {
         base.Initialize();
         damage = 0f;
-        List<BallManager> activeBalls = LevelManager.instance.activeBalls;
-        foreach(BallManager ball in activeBalls)
+        List<BallHandler> activeBalls = LevelManager.instance.activeBalls;
+        foreach(BallHandler ball in activeBalls)
         {
             damage += Utility.CallReturnableFunction<float>("DamageFormulas", ball.ballData.name, ball);
         }
     }
 
-    override public void HandleCollisions(DamageManager damageable)
+    override public void HandleCollisions(DamageHandler damageable)
     {
         float damage = this.damage * ballData.power;
 

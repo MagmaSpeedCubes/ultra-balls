@@ -52,7 +52,7 @@ public class CardDeckManager : MonoBehaviour
             // Set anchored position relative to parent
             newCardRect.anchoredPosition = beginPosition + offset;
             
-            CardManager cm = newCard.GetComponent<CardManager>();
+            CardHandler cm = newCard.GetComponent<CardHandler>();
             
             // Initialize the Ball prefab's values immediately before assignment
             Ball ballToAssign = ballPrefabs[i];

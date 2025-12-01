@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class UIElementManager : MonoBehaviour
+public class UIElementHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] protected GameObject backgroundImage, foregroundImage, subjectImage;
     [SerializeField] protected float hoverExpandAmount;
@@ -15,7 +15,7 @@ public class UIElementManager : MonoBehaviour
     }
     virtual public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.localScale = originalScale * hoverExpandAmount;
+        transform.localScale = originalScale * (1 + hoverExpandAmount);
         GetComponent<Image>().color = highlighted;
     }
 

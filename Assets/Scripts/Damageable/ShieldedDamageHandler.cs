@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShieldedManager : DamageManager
+public class ShieldedDamageHandler : DamageHandler
 {
     [SerializeField] protected AudioClip shieldHitSound;
     [SerializeField] protected AudioClip shieldBreakSound;
@@ -31,7 +31,7 @@ public class ShieldedManager : DamageManager
         }
     }
 
-    override public void Damage(float amount, string type, BallManager source = null)
+    override public void Damage(float amount, string type, BallHandler source = null)
     {
         if (shieldHealth > 0)
         {

@@ -41,17 +41,17 @@ deals 25% of the combined damage of all balls at its spawning. Only one integral
 
 public class DamageFormulas : MonoBehaviour
 {
-    public float Basic(BallManager ball)
+    public float Basic(BallHandler ball)
     {
         return ball.ballData.power * 2f;
     }
 
-    public float Speedy(BallManager ball)
+    public float Speedy(BallHandler ball)
     {
         return ball.ballData.power;
     }
 
-    public float Random(BallManager ball)
+    public float Random(BallHandler ball)
     {
         System.Random rng = new System.Random();
         return (float) rng.NextDouble() * 2 * ball.ballData.power;
@@ -59,31 +59,31 @@ public class DamageFormulas : MonoBehaviour
 
 
 
-    public float Coin(BallManager ball)
+    public float Coin(BallHandler ball)
     {
         return ball.ballData.power;
         //energy gained from each bounce
         
     }
 
-    public float Chisel(BallManager ball)
+    public float Chisel(BallHandler ball)
     {
         return ball.ballData.power / 100;
         //amount armor is damaged
         //by percentage so /100
     }
 
-    public float Slammed(BallManager ball)
+    public float Slammed(BallHandler ball)
     {
         return ball.numBounces + 1f;
     }
 
-    public float Mitosis(BallManager ball)
+    public float Mitosis(BallHandler ball)
     {
         return ball.ballData.size * 2f;
     }
 
-    public float Fibonacci(BallManager ball)
+    public float Fibonacci(BallHandler ball)
     {
         Debug.Log("Calculating Fibonacci damage for ball with " + ball.numBounces + " bounces.");
         if(ball.numBounces<=1){return ball.ballData.power;}
@@ -97,16 +97,16 @@ public class DamageFormulas : MonoBehaviour
         return f2 * ball.ballData.power;
     }
 
-    public float Derivative(BallManager ball)
+    public float Derivative(BallHandler ball)
     {
-        List<BallManager> activeBalls = LevelManager.instance.activeBalls;
+        List<BallHandler> activeBalls = LevelManager.instance.activeBalls;
         float minDamage = float.MaxValue;
         float maxDamage = float.MinValue;
 
-        foreach(BallManager otherBall in activeBalls)
+        foreach(BallHandler otherBall in activeBalls)
         {
             if(otherBall == ball){continue;}
-            if(otherBall is IntegralBallManager){continue;}
+            if(otherBall is IntegralBallHandler){continue;}
             if(otherBall.ballData.name == "Derivative"){continue;}
 
             float otherDamage = Utility.CallReturnableFunction<float>("DamageFormulas", otherBall.ballData.name, otherBall);

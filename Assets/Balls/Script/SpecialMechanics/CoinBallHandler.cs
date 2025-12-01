@@ -3,10 +3,10 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(AudioSource))]
 
-public class CoinBallManager : BallManager
+public class CoinBallHandler : BallHandler
 {
 
-    override public void HandleCollisions(DamageManager damageable)
+    override public void HandleCollisions(DamageHandler damageable)
     {
         object gainAmount = Utility.CallReturnableFunction<float>("DamageFormulas", ballData.name, this);
         float gain = Convert.ToSingle(gainAmount);

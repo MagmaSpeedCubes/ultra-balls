@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DamageManager : MonoBehaviour
+public class DamageHandler : MonoBehaviour
 {
     public DamageablePrefab prefab;
 
@@ -57,7 +57,7 @@ public class DamageManager : MonoBehaviour
         UpdateInfographics();
     }
 
-    virtual public void Damage(float amount, string type, BallManager source = null)
+    virtual public void Damage(float amount, string type, BallHandler source = null)
     {
         switch (type)
         {

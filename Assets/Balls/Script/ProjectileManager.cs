@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileManager : BallManager
+public class ProjectileManager : BallHandler
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

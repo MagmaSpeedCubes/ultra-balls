@@ -4,7 +4,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] protected int ballLayer;
     public static LevelManager instance;
-    public List<BallManager> activeBalls;
+    public List<BallHandler> activeBalls;
 
     void Awake()
     {
@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
 
     void AbilityTick()
     {
-        foreach(BallManager ball in activeBalls)
+        foreach(BallHandler ball in activeBalls)
         {
             if(ball != null)
             {
@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         CancelInvoke("AbilityTick");
     }
 
-    public void AddBall(BallManager ball)
+    public void AddBall(BallHandler ball)
     {
         activeBalls.Add(ball);
     }
@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
     {
         for(int i=activeBalls.Count-1; i>=LevelStats.MAX_BALL_COUNT; i--)
         {
-            BallManager ball = activeBalls[i];
+            BallHandler ball = activeBalls[i];
             Debug.Log("Balls capped at " + LevelStats.MAX_BALL_COUNT + ". Destroying ball " + i);
             Destroy(ball.gameObject);
             activeBalls.Remove(ball);

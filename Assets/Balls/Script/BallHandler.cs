@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(AudioSource))]
-public class BallManager : MonoBehaviour
+public class BallHandler : MonoBehaviour
 {
     public Ball ballData;
     
@@ -61,7 +61,7 @@ public class BallManager : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        DamageManager damageable = collision.gameObject.GetComponent<DamageManager>();
+        DamageHandler damageable = collision.gameObject.GetComponent<DamageHandler>();
 
 
         if (damageable != null && debounce >= DEBOUNCE_TIME)
@@ -72,7 +72,7 @@ public class BallManager : MonoBehaviour
 
     }
 
-    virtual public void HandleCollisions(DamageManager damageable)
+    virtual public void HandleCollisions(DamageHandler damageable)
     {
         object damageAmount = Utility.CallReturnableFunction<float>("DamageFormulas", ballData.name, this);
         float damage = Convert.ToSingle(damageAmount);
@@ -85,7 +85,7 @@ public class BallManager : MonoBehaviour
     }
 
 
-    virtual protected void Damage(float damage, DamageManager other)
+    virtual protected void Damage(float damage, DamageHandler other)
     {
         other?.Damage(damage, ballData.name, this);
 

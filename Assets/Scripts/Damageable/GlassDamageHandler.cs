@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class GlassDamageManager : DamageManager
+public class GlassDamageHandler : DamageHandler
 {
 
-    override public void Damage(float amount, string type, BallManager source = null)
+    override public void Damage(float amount, string type, BallHandler source = null)
     {
         if (amount >= maxHealth)
         {

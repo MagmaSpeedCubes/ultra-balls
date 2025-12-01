@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MitosisManager : BallManager
+public class MitosisBallHandler : BallHandler
 {
     [SerializeField] protected float bounceGrowAmount = 0.1f;
     [SerializeField] protected int copies = 2;
@@ -21,14 +21,14 @@ public class MitosisManager : BallManager
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        DamageManager damageable = collision.gameObject.GetComponent<DamageManager>();
+        DamageHandler damageable = collision.gameObject.GetComponent<DamageHandler>();
         if (damageable != null && debounce >= DEBOUNCE_TIME)
         {
             HandleCollisions(damageable);
         }
     }
 
-    override public void HandleCollisions(DamageManager damageable)
+    override public void HandleCollisions(DamageHandler damageable)
     {
         base.HandleCollisions(damageable);
         localSizeMultiplier += bounceGrowAmount;
@@ -43,13 +43,13 @@ public class MitosisManager : BallManager
                 Debug.Log("Split #" + i);
                 GameObject newBall = Instantiate(this.gameObject, transform.position, Quaternion.identity);
                 newBall.name = this.name;
-                MitosisManager newBallManager = newBall.GetComponent<MitosisManager>();
-                newBallManager.ballData = newBall.GetComponent<Ball>();
-                newBallManager.localSizeMultiplier = this.localSizeMultiplier / copies;
-                newBallManager.numBounces = 0;
+                MitosisBallHandler newBallHandler = newBall.GetComponent<MitosisBallHandler>();
+                newBallHandler.ballData = newBall.GetComponent<Ball>();
+                newBallHandler.localSizeMultiplier = this.localSizeMultiplier / copies;
+                newBallHandler.numBounces = 0;
 
 
-                Debug.Log("New ball data: " + newBallManager.ballData.ToString());
+                Debug.Log("New ball data: " + newBallHandler.ballData.ToString());
 
             }
             AudioManager.instance.PlaySound(ballData.specialSound, ProfileCustomization.playerVolume * ProfileCustomization.masterVolume);

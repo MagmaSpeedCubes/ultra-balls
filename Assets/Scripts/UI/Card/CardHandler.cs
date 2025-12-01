@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-public class CardManager : UIElementManager
+public class CardHandler : UIElementHandler
 {
     public Ball subject;
     [SerializeField] private TextMeshProUGUI cardTitle;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TankManager : DamageManager
+public class TankDamageHandler : DamageHandler
 {
     [SerializeField] protected Infographic[] tankDisplays;
     [SerializeField] protected float tankAmount = 1f;
@@ -13,7 +13,7 @@ public class TankManager : DamageManager
             tank.SetValue(tankAmount);
         }
     }
-    override public void Damage(float amount, string type, BallManager source = null)
+    override public void Damage(float amount, string type, BallHandler source = null)
     {
         if(amount <= tankAmount)
         {
