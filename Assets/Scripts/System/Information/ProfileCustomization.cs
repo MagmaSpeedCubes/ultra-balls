@@ -38,6 +38,10 @@ public class ProfileCustomization : MonoBehaviour
     [Header("Alert Colors")]
     public Color info, warning, error, success;
 
+    [Header("Default Sprites")]
+    public Sprite defaultBall;
+
+
 
     void Awake()
     {

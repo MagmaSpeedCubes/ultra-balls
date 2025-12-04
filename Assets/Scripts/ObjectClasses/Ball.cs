@@ -4,10 +4,12 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
 
-    [HideInInspector] public Sprite sprite;
+    [HideInInspector] public Sprite mainSprite;
+    [HideInInspector] public Sprite ballSprite;
     [HideInInspector] public Color spriteColor;
     public BallPrefab prefab;
     public Ownable ownable;
+    
 
     [HideInInspector]public float gravity;
     [HideInInspector]public float power;
@@ -20,6 +22,7 @@ public class Ball : MonoBehaviour
 
 
     public GameObject ballPrefabObject;
+
 
     public Ball(BallPrefab pfb, Ownable own)
     {
@@ -63,12 +66,16 @@ public class Ball : MonoBehaviour
 
         price = Mathf.Max(0, (int)(prefab.price * priceMultiplier));
 
-        sprite = ownable != null ? ownable.sprite : null;
+        mainSprite = ownable != null ? ownable.sprite : null; 
+
+        ballSprite = ProfileCustomization.instance.defaultBall;
         spriteColor = prefab.defaultColor;
 
         bounceSound = prefab.bounceSound;
         specialSound = prefab.specialSound;
     }
+
+
 
     private float GetMultiplier(string tagName, float defaultValue = 1f)
     {

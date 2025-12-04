@@ -8,6 +8,8 @@ public class CardHandler : UIElementHandler
     [SerializeField] private TextMeshProUGUI cardTitle;
     [SerializeField] private TextMeshProUGUI cardCost;
 
+    
+
     private CardDeckManager cdm;
     void Awake()
     {
@@ -26,7 +28,7 @@ public class CardHandler : UIElementHandler
     {
         
         Image subjectSprite = subjectGameObject.GetComponent<Image>();
-        subjectSprite.sprite = subject.sprite;
+        subjectSprite.sprite = subject.mainSprite;
         subjectSprite.color = subject.spriteColor;
         cardTitle.text = subject.name;
         cardCost.text = ""+subject.price;

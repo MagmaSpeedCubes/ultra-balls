@@ -5,6 +5,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] protected int ballLayer;
     public static LevelManager instance;
     public List<BallHandler> activeBalls;
+    public int levelMaxTime;
 
     void Awake()
     {

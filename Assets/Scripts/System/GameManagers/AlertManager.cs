@@ -24,8 +24,8 @@ public class AlertManager : MonoBehaviour
     void Start()
     {
         //test
-        ThrowUIInfo("This is a game", new string[] {"Alex made this"});
-        ThrowUIError("This Game Sucks", new string[] {"Alex is bad at game dev"});
+        //ThrowUIInfo("This is a game", new string[] {"Alex made this"});
+        //ThrowUIError("This Game Sucks", new string[] {"Alex is bad at game dev"});
     }
 
 

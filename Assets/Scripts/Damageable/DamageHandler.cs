@@ -5,7 +5,7 @@ public class DamageHandler : MonoBehaviour
     public DamageablePrefab prefab;
 
     protected float armor;
-    protected float maxHealth;
+    public float maxHealth;
     protected float regenRate;
 
     protected AudioClip damageSound, deathSound;
@@ -18,16 +18,17 @@ public class DamageHandler : MonoBehaviour
     
 
 
-    void Awake()
+    void Start()
     {
-        Instantiate();
+        Initialize();
 
     }
 
-    void Instantiate()
+    
+
+    virtual protected void Initialize()
     {
         armor = prefab.armor;
-        maxHealth = prefab.maxHealth;
         regenRate = prefab.regenRate;
 
         damageSound = prefab.damageSound;
@@ -106,6 +107,8 @@ public class DamageHandler : MonoBehaviour
         AudioManager.instance.PlaySound(deathSound, ProfileCustomization.worldVolume * ProfileCustomization.masterVolume);
         Destroy(gameObject);
     }
+
+
 }
 
 
