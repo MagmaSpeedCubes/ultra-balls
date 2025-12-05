@@ -23,19 +23,19 @@ public class Ownable : ScriptableObject
         {
             Debug.LogWarning("Data incomplete: Using default values");
             this.name = "NewOwnable";
-            sprite = Utility.FindSpriteByName("default");
+            //sprite = Utility.FindSpriteByName("default");
             
         }else if(fourthBar != -1)
         {
             Debug.LogWarning("Data possibly corrupted: Using default values");
             this.name = "NewOwnable";
-            sprite = Utility.FindSpriteByName("default");
+            //sprite = Utility.FindSpriteByName("default");
         }
         else
         {
             this.name = serialized.Substring(0, firstBar);
             string spriteName = serialized.Substring(firstBar+1, secondBar - firstBar - 1);
-            sprite = Utility.FindSpriteByName(spriteName);
+            //sprite = Utility.FindSpriteByName(spriteName);
             
             Debug.Log("Second Bar +1: " + (secondBar + 1));
             Debug.Log("Third Bar: " + thirdBar);
@@ -89,7 +89,7 @@ public class Ownable : ScriptableObject
         if(sprite == null)
         {
             this.name = "NewOwnable";
-            sprite = Utility.FindSpriteByName("default");
+            //sprite = Utility.FindSpriteByName("default");
         }
 
         List<string> tagNames = new List<string>();

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public static LevelGenerator instance;
     public GameObject levelPrefab;
     public GameObject wallPrefab;
     public GameObject platformPrefab;
 
     public DamageablePrefab[] damageablePrefabs;
 
-    float[] rowYs = new float[] { 100f, 300f, 600f, 800f };
+    float[] rowYs = new float[] { 100f, 300f, 500f, 700f };
     const float platformHeight = 100f;
     const double splitProb = 0.2;    // chance a platform segment will split into two
     const double wallProb = 0.4;     // chance a split will include a wall between parts
@@ -21,26 +22,33 @@ public class LevelGenerator : MonoBehaviour
     const float wallMax = 80f;
 
 
+
     
-    
+    void Awake(){
+        if(instance==null){
+            instance = this;
+        }else{
+            Debug.LogWarning("Multiple instances of LevelGenerator detected. Destroying duplicate.");
+        }
+    }
     void Start(){
         TestGenerateLevel();
     }
     public void TestGenerateLevel(){
         GenerateLevel(1);
     }
+
     
-    public void GenerateLevel(int levelNumber)
+    
+    public GameObject GenerateLevel(int levelNumber)
     {
         /// <summary>
         /// Generates a level of size 800x by 900y
         /// </summary>
         /// <param name="levelNumber">The number of the level. Level difficulty increases over time but plateaus.</param>
 
-        
         System.Random rng = new System.Random(levelNumber);
         float difficulty = 100 * levelNumber / (levelNumber + 40);
-
 
         //difficulty determined by random generation
         
@@ -75,18 +83,11 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
-        float maxTime = (float)Math.Log(totalHealth / difficulty);
+        float maxTime = (float)Math.Log(totalHealth / difficulty) * 10f;
         LevelManager.instance.levelMaxTime = (int)maxTime;
+        LevelManager.instance.levelTimer = (int)maxTime;
 
-
-
-
-
-
-
-
-        
-
+        return lp;
     }
 
 
@@ -98,7 +99,7 @@ public class LevelGenerator : MonoBehaviour
     /// - After generation, platforms may be randomly removed, but at least two platforms will remain if possible.
     /// This method only returns geometry data and does not instantiate GameObjects.
     /// </summary>
-    public List<LevelObjectData> GeneratePlatforms(System.Random rng, Rect frame, Vector2 localSize)
+     List<LevelObjectData> GeneratePlatforms(System.Random rng, Rect frame, Vector2 localSize)
     {
         if (rng == null) throw new ArgumentNullException(nameof(rng));
 

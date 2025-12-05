@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 using System.Linq;
-using UnityEditor;
+//using UnityEditor;
 
 public class Utility : MonoBehaviour
 {
@@ -204,7 +204,7 @@ public class Utility : MonoBehaviour
                 Debug.LogError($"Failed to set {variableName} on {scriptName}: {e.Message}");
             }
         }
-
+/*
 
     public static Sprite FindSpriteByName(string spriteName)
     {
@@ -237,5 +237,6 @@ public class Utility : MonoBehaviour
 
         return null;
     }
+    */
     
 }

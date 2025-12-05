@@ -54,11 +54,18 @@ public class ClickManager : MonoBehaviour
                     //continue spawning process if and only if clicked in spawn zone
                     if(LevelStats.selectedBall.price <= LevelStats.energy)
                     {
+
+                        if (!LevelManager.instance.active)
+                        {
+                            LevelManager.instance.StartLevel();
+                        }
                         LevelStats.energy -= LevelStats.selectedBall.price;
                         GameObject newBall = Instantiate(LevelStats.selectedBall.ballPrefabObject, worldPos, Quaternion.identity);
                         newBall.name = LevelStats.selectedBall.ballPrefabObject.name;
                         newBall.GetComponent<SpriteRenderer>().color = LevelStats.selectedBall.prefab.defaultColor;
                         newBall.transform.parent = ballParent.transform;
+
+                        
                         
                     }
                     

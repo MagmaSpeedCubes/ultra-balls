@@ -12,7 +12,7 @@ public class NumberText : Infographic
     {
         type = "Text";
     }
-
+    
     override protected void UpdateInfo(float oldValue)
     {
         base.UpdateInfo(oldValue);
@@ -24,7 +24,7 @@ public class NumberText : Infographic
         // animateToValue(oldValue, roundedValue, 0.5f);
 
     }
-
+    /*
     protected void AnimateToValue(float oldValue, float newValue, float time)
     {
         
@@ -51,7 +51,7 @@ public class NumberText : Infographic
 
 
         yield return null;
-    }
+    }*/
 
 
 

@@ -2,10 +2,16 @@ using UnityEngine;
 using System.Collections.Generic;
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] protected int ballLayer;
+    [SerializeField] private int ballLayer;
     public static LevelManager instance;
     public List<BallHandler> activeBalls;
     public int levelMaxTime;
+    public float levelTimer;
+    public int levelNumber;
+    public GameObject currentLevel;
+    public bool active { get; private set; }
+
+    [SerializeField] private Infographic timeDisplay;
 
     void Awake()
     {
@@ -45,12 +51,30 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
+        active = true;
         InvokeRepeating("AbilityTick", LevelStats.ABILITY_TICK_INTERVAL, LevelStats.ABILITY_TICK_INTERVAL);
         LevelStats.energy = 50;
+        levelTimer = levelMaxTime;
+    }
+
+    public void NextLevel()
+    {
+        Destroy(currentLevel);
+        levelNumber++;
+        currentLevel = LevelGenerator.instance.GenerateLevel(levelNumber); 
+        
+    }
+
+    public void PreviousLevel()
+    {
+        Destroy(currentLevel);
+        levelNumber--;
+        currentLevel = LevelGenerator.instance.GenerateLevel(levelNumber); 
     }
 
     public void EndLevel()
     {
+        active = false;
         CancelInvoke("AbilityTick");
     }
 
@@ -63,12 +87,22 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i=activeBalls.Count-1; i>=LevelStats.MAX_BALL_COUNT; i--)
+        if(activeBalls.Count-1 >= LevelStats.MAX_BALL_COUNT)
         {
-            BallHandler ball = activeBalls[i];
-            Debug.Log("Balls capped at " + LevelStats.MAX_BALL_COUNT + ". Destroying ball " + i);
-            Destroy(ball.gameObject);
-            activeBalls.Remove(ball);
+            AlertManager.instance.ThrowUIWarning("Marble cap reached", new string[]{"Marbles capped at " + LevelStats.MAX_BALL_COUNT + ". Destroying extras."});
+            for(int i=activeBalls.Count-1; i>=LevelStats.MAX_BALL_COUNT; i--)
+            {
+                BallHandler ball = activeBalls[i];
+                Destroy(ball.gameObject);
+                activeBalls.Remove(ball);
+            }
         }
+        if (active)
+        {
+            levelTimer -= Time.deltaTime;
+            timeDisplay.SetValue(levelTimer);    
+        }
+
+
     }
 }
