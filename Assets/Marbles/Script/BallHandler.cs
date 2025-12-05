@@ -10,7 +10,7 @@ public class BallHandler : MonoBehaviour
     protected SpriteRenderer spr;
     protected AudioSource asc;
     [HideInInspector]public int numBounces = 0;
-    protected static readonly float DEBOUNCE_TIME = 0.1f;
+    protected static readonly float DEBOUNCE_TIME = 0.25f;
     protected float debounce = DEBOUNCE_TIME;
 
     [SerializeField] protected SpriteRenderer iconSprite;
@@ -30,6 +30,11 @@ public class BallHandler : MonoBehaviour
         numBounces = 0;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = ballData.gravity;
+        // rb.sleepThreshold = 0f;             // Modern Unity
+        // rb.sleepAngularVelocity = 0f;       // Legacy compatibility
+
+
+
         transform.localScale = Vector3.one * ballData.size;
         spr = GetComponent<SpriteRenderer>();
         spr.sprite = ballData.ballSprite;
@@ -74,8 +79,23 @@ public class BallHandler : MonoBehaviour
 
         if (damageable != null && debounce >= DEBOUNCE_TIME)
         {
+            Vector2 velocity = rb.linearVelocity;
+            rb.AddForce(velocity * -1, ForceMode2D.Impulse);
+
+            rb.linearVelocity = Vector3.zero;
+
+            Debug.Log("Stopped ball, handling collision");
+ 
+
             HandleCollisions(damageable);
+
+            Debug.Log("Reinitializing movement with corrected velocity");
+            Vector2 corrected = velocity.normalized * 7.5f * ballData.movementSpeed;
+            corrected.y = -corrected.y;
+            rb.AddForce(corrected, ForceMode2D.Impulse);  
+              
         }
+ 
 
 
     }

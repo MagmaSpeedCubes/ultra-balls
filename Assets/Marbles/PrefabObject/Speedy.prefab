@@ -156,7 +156,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!82 &4019118436832850164
@@ -283,18 +283,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81016a7898e948f7bb3d9c4149031f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
-  mainSprite: {fileID: 0}
-  ballSprite: {fileID: 0}
-  spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  mainSprite: {fileID: -3852117235588928371, guid: b24a4992523d94a7d8fcc494ccb2e2a2, type: 3}
+  ballSprite: {fileID: -2935846804084577621, guid: d69aee9b7d72c46a7b6f2263089c71f3, type: 3}
+  spriteColor: {r: 0, g: 0.7490196, b: 1, a: 1}
   prefab: {fileID: 11400000, guid: 0e03af11fefb440229cfe60f1d507807, type: 2}
   ownable: {fileID: 11400000, guid: ef2f4bb596a894b2a9f42e4612670cef, type: 2}
-  gravity: 0
-  power: 0
-  size: 0
-  movementSpeed: 0
-  price: 0
-  bounceSound: {fileID: 0}
-  specialSound: {fileID: 0}
+  gravity: 3
+  power: 1
+  size: 1
+  movementSpeed: 3
+  price: 15
+  bounceSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
+  specialSound: {fileID: 8300000, guid: 915d684e0757340378eb0912c36d95be, type: 3}
   ballPrefabObject: {fileID: 2145997623507857803}
 --- !u!1 &3056997295181542274
 GameObject:
